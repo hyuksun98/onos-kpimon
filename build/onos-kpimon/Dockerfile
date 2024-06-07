@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# First Build Stage
 ARG ONOS_BUILD_VERSION=undefined
 
 FROM onosproject/golang-build:v1.3.1 as build
@@ -18,6 +19,7 @@ COPY build/build-tools /go/src/github.com/onosproject/onos-kpimon/build/build-to
 
 RUN cd /go/src/github.com/onosproject/onos-kpimon && GOFLAGS=-mod=vendor make ${ONOS_MAKE_TARGET}
 
+# Second Build Stage
 FROM frolvlad/alpine-glibc:alpine-3.19
 
 USER nobody
